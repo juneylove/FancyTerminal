@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'me.juneylove'
-version = '1.0-SNAPSHOT'
+version = '1.0'
 
 repositories {
     mavenCentral()
@@ -16,4 +16,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "me.juneylove.Main"
+    }
 }
