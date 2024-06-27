@@ -36,7 +36,7 @@ public class Main {
             try {
                 fullString = reader.readLine();
             } catch (IOException e) {
-                System.out.println("I/O error, please validate input and try again.");
+                System.out.println("[!] I/O error, please validate input and try again.");
             }
 
             String commandName = fullString.split(" ")[0];
@@ -48,9 +48,12 @@ public class Main {
 
                 if (arg.equals("quit")) {
                     System.out.println("Quits out of the fancy terminal.");
+                } else if (arg.isEmpty()) {
+                    listCommands();
                 } else if (commands.containsKey(arg)) {
                     commands.get(arg).printHelp();
                 } else {
+                    System.out.println("[!] Unrecognized command.");
                     listCommands();
                 }
 
@@ -59,7 +62,7 @@ public class Main {
                 if (commands.containsKey(commandName)) {
 
                     if (!commands.get(commandName).run(arg)) { // run command - return false indicates a syntax error
-                        System.out.println("Error - command " + commandName + " usage:");
+                        System.out.println("[!] Error - command " + commandName + " usage:");
                         commands.get(commandName).printUsage();
                     }
 
@@ -75,7 +78,7 @@ public class Main {
 
     private static void listCommands() {
 
-        System.out.println("Unrecognized command. Valid commands are:");
+        System.out.println("Valid commands are:");
 
         for (String command : commands.keySet()) {
             System.out.println("    " + command);
