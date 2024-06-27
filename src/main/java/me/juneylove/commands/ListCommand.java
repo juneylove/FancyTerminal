@@ -23,6 +23,7 @@ public class ListCommand implements ICommand {
 
         counter = 0;
         boolean deep = arg.equals("deep");
+        System.out.println("Files in directory " + Main.getCurrentPath() + ":");
         listFiles(Main.getCurrentPath(), deep, 0);
         return true;
 
@@ -48,11 +49,10 @@ public class ListCommand implements ICommand {
         File[] files = currentDir.listFiles();
         if (files == null) {
 
-            System.out.println("File " + currentDir.getName() + " is not a directory.");
+            System.out.println("[!] File " + currentDir.getName() + " is not a directory.");
 
         } else {
 
-            if (depth == 0) System.out.println("Files in directory " + path + ":");
             for (File file : files) {
 
                 System.out.println(indent.repeat(depth) + file.getName());

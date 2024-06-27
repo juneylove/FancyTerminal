@@ -26,11 +26,11 @@ public class MkDirCommand implements ICommand {
         }
 
         if (Files.exists(newPath)) {
-            System.out.println("Directory already exists.");
+            System.out.println("[!] Directory already exists.");
         } else {
 
             if (!newPath.toFile().mkdirs()) {
-                System.out.println("Error creating directory.");
+                System.out.println("[!] Error creating directory.");
             }
 
         }

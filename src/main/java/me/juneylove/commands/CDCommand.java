@@ -25,10 +25,12 @@ public class CDCommand implements ICommand {
             return false;
         }
 
-        if (Files.exists(newPath)) {
-            Main.setCurrentPath(newPath.toAbsolutePath().normalize());
+        if (!Files.exists(newPath)) {
+            System.out.println("[!] Path does not exist.");
+        } else if (!Files.isDirectory(newPath)) {
+            System.out.println("[!] Path is not a directory.");
         } else {
-            System.out.println("Path does not exist.");
+            Main.setCurrentPath(newPath.toAbsolutePath().normalize());
         }
 
         return true;
